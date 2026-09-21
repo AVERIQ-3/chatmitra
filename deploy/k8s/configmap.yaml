@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chatmitra-config
+  namespace: default
+data:
+  NODE_ENV: "production"
+  PORT: "3000"
+  APP_URL: "https://chatmitra.yourdomain.com"
+  # Address of database running directly on host server (e.g. PostgreSQL running on host IP/hostname)
+  DATABASE_URL: "postgresql://dbuser:dbpass@your-external-db-server.internal:5432/chatmitra_db"
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: chatmitra-secret
+  namespace: default
+type: Opaque
+stringData:
+  GEMINI_API_KEY: "YOUR_GEMINI_API_KEY_HERE"

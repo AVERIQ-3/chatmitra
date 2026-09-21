@@ -1,0 +1,12 @@
+{
+  "name": "ChatMitra",
+  "description": "Chat with people near you on ChatMitra. No login or email required. Join instantly as a guest, discover people, and start chatting.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

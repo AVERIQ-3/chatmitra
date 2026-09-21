@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: chatmitra-app
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-""}
+      - APP_URL=${APP_URL:-"http://localhost:3000"}
+      # Connect to external database hosted on the host server (outside container)
+      - DATABASE_URL=${DATABASE_URL:-"postgresql://dbuser:dbpass@host.docker.internal:5432/chatmitra_db"}
+    extra_hosts:
+      # Allows the container to access the host machine's database server
+      - "host.docker.internal:host-gateway"

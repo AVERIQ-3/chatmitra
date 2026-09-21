@@ -1,0 +1,42 @@
+replicaCount: 2
+
+image:
+  repository: chatmitra-app
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+ingress:
+  enabled: true
+  className: "nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "50m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/websocket-services: "chatmitra"
+  hosts:
+    - host: chatmitra.yourdomain.com
+      paths:
+        - path: /
+          pathType: Prefix
+
+env:
+  NODE_ENV: "production"
+  PORT: "3000"
+  APP_URL: "https://chatmitra.yourdomain.com"
+  # Database running directly on host server outside container
+  DATABASE_URL: "postgresql://dbuser:dbpass@your-external-db-server.internal:5432/chatmitra_db"
+
+secrets:
+  GEMINI_API_KEY: "YOUR_GEMINI_API_KEY_HERE"
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 256Mi

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+Allow: /discover
+Allow: /privacy
+Allow: /terms
+Allow: /safety
+Allow: /community-guidelines
+Allow: /cookies
+Disallow: /api/
+Disallow: /admin
+
+Sitemap: https://chatmitra.com/sitemap.xml
